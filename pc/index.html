@@ -1,0 +1,717 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Adventure Bingo Landing Page">
+    <meta name="author" content="Lucas Rodrigues (Indutiva Tecnologia)">
+    <title>Adventure Bingo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            display: table;
+            height: 100vh;
+            width: 100%;
+            background: url('../media/background.webp') no-repeat fixed;
+            padding: 100px 0;
+            background-position: 30% 45%;
+            background-size: cover;
+        }
+        
+        .container {
+            max-width: 990px;
+            height: auto;
+            background: url('../media/map5.webp') no-repeat;
+            background-size: cover;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 100px;
+        }
+        
+        .header {
+            width: 65%;
+            padding-top: 17%;
+        }
+        
+        img {
+            object-fit: contain;
+            max-width: 100%;
+        }
+        
+        #map {
+            margin-left: 40px;
+        }
+        
+        .footer {
+            height: auto;
+            background: url('../media/footer.webp') no-repeat;
+            background-size: contain;
+            position: fixed;
+            /*top:500px;*/
+            bottom: -8px;
+            left: 14%;
+            z-index: 1000;
+        }
+        
+        .video {
+            width: 45%;
+            margin-top: -2%;
+        }
+        
+        .download {
+            background: #820901;
+            border-color: #820901;
+            position: absolute;
+            top: 73%;
+        }
+        
+        .download:hover {
+            background: #950901;
+            border-color: #950901;
+        }
+        
+        #bird {
+            width: 10vw;
+            top: 1050px;
+            height: auto;
+            position: absolute;
+        }
+        
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+        
+        .my-float {
+            margin-top: 16px;
+        }
+        
+        #center-text {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        #chat-circle {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            background: #5A5EB9;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            color: white;
+            padding: 28px;
+            cursor: pointer;
+            box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.6), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+        
+        .btn#my-btn {
+            background: white;
+            padding-top: 13px;
+            padding-bottom: 12px;
+            border-radius: 45px;
+            padding-right: 40px;
+            padding-left: 40px;
+            color: #5865C3;
+        }
+        
+        #chat-overlay {
+            background: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: none;
+            font-size: large;
+        }
+        
+        .chat-box {
+            display: none;
+            background: #efefef;
+            position: fixed;
+            right: 30px;
+            bottom: 10px;
+            width: 350px;
+            max-width: 85vw;
+            max-height: 100vh;
+            border-radius: 5px;
+            /*   box-shadow: 0px 5px 35px 9px #464a92; */
+            box-shadow: 0px 5px 35px 9px #ccc;
+            z-index: 1500;
+        }
+        
+        .chat-box-toggle {
+            float: right;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .chat-box-header {
+            background: #5A5EB9;
+            height: 70px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            padding-top: 17px;
+        }
+        
+        .chat-box-body {
+            position: relative;
+            height: 370px;
+            height: auto;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        
+        .chat-box-body:after {
+            content: "";
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAgOCkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGNpcmNsZSBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgY3g9IjE3NiIgY3k9IjEyIiByPSI0Ii8+PHBhdGggZD0iTTIwLjUuNWwyMyAxMW0tMjkgODRsLTMuNzkgMTAuMzc3TTI3LjAzNyAxMzEuNGw1Ljg5OCAyLjIwMy0zLjQ2IDUuOTQ3IDYuMDcyIDIuMzkyLTMuOTMzIDUuNzU4bTEyOC43MzMgMzUuMzdsLjY5My05LjMxNiAxMC4yOTIuMDUyLjQxNi05LjIyMiA5LjI3NC4zMzJNLjUgNDguNXM2LjEzMSA2LjQxMyA2Ljg0NyAxNC44MDVjLjcxNSA4LjM5My0yLjUyIDE0LjgwNi0yLjUyIDE0LjgwNk0xMjQuNTU1IDkwcy03LjQ0NCAwLTEzLjY3IDYuMTkyYy02LjIyNyA2LjE5Mi00LjgzOCAxMi4wMTItNC44MzggMTIuMDEybTIuMjQgNjguNjI2cy00LjAyNi05LjAyNS0xOC4xNDUtOS4wMjUtMTguMTQ1IDUuNy0xOC4xNDUgNS43IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTg1LjcxNiAzNi4xNDZsNS4yNDMtOS41MjFoMTEuMDkzbDUuNDE2IDkuNTIxLTUuNDEgOS4xODVIOTAuOTUzbC01LjIzNy05LjE4NXptNjMuOTA5IDE1LjQ3OWgxMC43NXYxMC43NWgtMTAuNzV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjcxLjUiIGN5PSI3LjUiIHI9IjEuNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjE3MC41IiBjeT0iOTUuNSIgcj0iMS41Ii8+PGNpcmNsZSBmaWxsPSIjMDAwIiBjeD0iODEuNSIgY3k9IjEzNC41IiByPSIxLjUiLz48Y2lyY2xlIGZpbGw9IiMwMDAiIGN4PSIxMy41IiBjeT0iMjMuNSIgcj0iMS41Ii8+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTkzIDcxaDN2M2gtM3ptMzMgODRoM3YzaC0zem0tODUgMThoM3YzaC0zeiIvPjxwYXRoIGQ9Ik0zOS4zODQgNTEuMTIybDUuNzU4LTQuNDU0IDYuNDUzIDQuMjA1LTIuMjk0IDcuMzYzaC03Ljc5bC0yLjEyNy03LjExNHpNMTMwLjE5NSA0LjAzbDEzLjgzIDUuMDYyLTEwLjA5IDcuMDQ4LTMuNzQtMTIuMTF6bS04MyA5NWwxNC44MyA1LjQyOS0xMC44MiA3LjU1Ny00LjAxLTEyLjk4N3pNNS4yMTMgMTYxLjQ5NWwxMS4zMjggMjAuODk3TDIuMjY1IDE4MGwyLjk0OC0xOC41MDV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxwYXRoIGQ9Ik0xNDkuMDUgMTI3LjQ2OHMtLjUxIDIuMTgzLjk5NSAzLjM2NmMxLjU2IDEuMjI2IDguNjQyLTEuODk1IDMuOTY3LTcuNzg1LTIuMzY3LTIuNDc3LTYuNS0zLjIyNi05LjMzIDAtNS4yMDggNS45MzYgMCAxNy41MSAxMS42MSAxMy43MyAxMi40NTgtNi4yNTcgNS42MzMtMjEuNjU2LTUuMDczLTIyLjY1NC02LjYwMi0uNjA2LTE0LjA0MyAxLjc1Ni0xNi4xNTcgMTAuMjY4LTEuNzE4IDYuOTIgMS41ODQgMTcuMzg3IDEyLjQ1IDIwLjQ3NiAxMC44NjYgMy4wOSAxOS4zMzEtNC4zMSAxOS4zMzEtNC4zMSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEuMjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=');
+            opacity: 0.1;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 100%;
+            position: absolute;
+            z-index: -1;
+        }
+        
+        #chat-input {
+            background: #f4f7f9;
+            width: 100%;
+            position: relative;
+            height: 47px;
+            padding-top: 10px;
+            padding-right: 50px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            border: none;
+            resize: none;
+            outline: none;
+            border: 1px solid #ccc;
+            color: #888;
+            border-top: none;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .chat-input>form {
+            margin-bottom: 0;
+        }
+        
+        #chat-input::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            color: #ccc;
+        }
+        
+        #chat-input::-moz-placeholder {
+            /* Firefox 19+ */
+            color: #ccc;
+        }
+        
+        #chat-input:-ms-input-placeholder {
+            /* IE 10+ */
+            color: #ccc;
+        }
+        
+        #chat-input:-moz-placeholder {
+            /* Firefox 18- */
+            color: #ccc;
+        }
+        
+        .chat-submit {
+            position: absolute;
+            bottom: 3px;
+            right: 10px;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            border-radius: 50%;
+            color: #5A5EB9;
+            width: 35px;
+            height: 35px;
+        }
+        
+        .chat-logs {
+            padding: 15px;
+            height: 370px;
+            overflow-y: scroll;
+        }
+        
+        .chat-logs::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #F5F5F5;
+        }
+        
+        .chat-logs::-webkit-scrollbar {
+            width: 5px;
+            background-color: #F5F5F5;
+        }
+        
+        .chat-logs::-webkit-scrollbar-thumb {
+            background-color: #5A5EB9;
+        }
+        
+        @media only screen and (max-width: 500px) {
+            .chat-logs {
+                height: 40vh;
+            }
+        }
+        
+        .chat-msg.user>.msg-avatar img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            float: left;
+            width: 15%;
+        }
+        
+        .chat-msg.self>.msg-avatar img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            float: right;
+            width: 15%;
+        }
+        
+        .cm-msg-text {
+            background: white;
+            padding: 10px 15px 10px 15px;
+            color: #666;
+            max-width: 75%;
+            float: left;
+            margin-left: 10px;
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 30px;
+        }
+        
+        .chat-msg {
+            clear: both;
+        }
+        
+        .chat-msg.self>.cm-msg-text {
+            float: right;
+            margin-right: 10px;
+            background: #5A5EB9;
+            color: white;
+        }
+        
+        .cm-msg-button>ul>li {
+            list-style: none;
+            float: left;
+            width: 50%;
+        }
+        
+        .cm-msg-button {
+            clear: both;
+            margin-bottom: 70px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <img class="header" src="../media/header.webp" alt="Aventura Pirata">
+        <img style="width:15%;" src="../media/arrow.gif" alt="Aventura Pirata">
+
+        <video controls class="video">
+            <source src="../media/tesouro.mp4" type="video/mp4">
+            Vídeo não suportado no navegador.
+        </video>
+        <video controls class="" style="width:22%; position:absolute; top: 304%; left:58%">
+            <source src="../media/tesouro.mp4" type="video/mp4">
+            Vídeo não suportado no navegador.
+        </video>
+
+        <button type="button" class="btn btn-primary btn-sm download">&nbsp;&nbsp;Baixe Já!&nbsp;&nbsp;</button>
+
+        <img id="map" src="../media/map.png" alt="Aventura Pirata">
+
+        <img class="footer" src="../media/footer.webp" alt="Aventura Pirata">
+        <br><br>
+        <img id="bird" src="../media/bird-left.webp" alt="Bird" class="img-fluid">
+        <a href=""><button type="button" style="position:absolute; top: 333%; left: 25%; width: 12%; border: transparent; background: transparent; color: transparent">-</button></a>
+        <a href=""><button type="button" style="position:absolute; top: 587%; left: 26%; width: 15%; border: transparent; background: transparent; color: transparent">porra</button></a>
+
+    </div>
+    <div id="chat-circle" class="btn btn-raised">
+        <div id="chat-overlay"></div>
+        <i class="material-icons">forum</i>
+    </div>
+
+    <div class="chat-box">
+        <div class="chat-box-header">
+            ChatBot
+            <span class="chat-box-toggle"><i class="material-icons">close</i></span>
+        </div>
+        <div class="chat-box-body">
+            <div class="chat-box-overlay">
+            </div>
+            <div class="chat-logs">
+
+            </div>
+            <!--chat-log -->
+        </div>
+
+        <div class="chat-input">
+            <form>
+                <input type="text" id="chat-input" placeholder="Send a message..." />
+                <button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons">send</i></button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        var urlAtual = window.location.href;
+        var urlClass = new URL(urlAtual);
+        /*
+                if (!urlClass.searchParams.get("a")) {
+                    setTimeout(function() {
+                        window.location.href = window.location.href + "?a=0";
+                    }, 1000);
+                }*/
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        console.log("Comprimento X Altura: " + $(document).width() + "pxX" + $(document).height() + "px"); // altura do documento HTML
+        var altura = $(document).height();
+        var comprimento = $(document).width();
+        var xComp = comprimento / 1370;
+        var xAlt = altura / 4170;
+        console.log("xComp=" + xComp + "---xAlt=" + xAlt);
+        const boxElement = document.querySelector('#bird');
+        posX = [-70, 45, -120, -100, 210, 250, 210, 90, -150, -60, 250, -150, -120, 200, 0];
+
+
+        var txt = 0;
+        var vetY = [0];
+
+        function movePassaro(last, posicao) {
+
+            var x = posX[posicao - 1];
+            var auxy = vetY[0];
+            var y = last;
+            vetY[0] = y;
+            console.log("X:" + x + "---Y:" + y);
+            if (posicao > 1) {
+                var antX = posX[posicao - 2];
+                var antY = auxy;
+                txt = antX + "px," + antY + "px";
+            }
+
+            var animation = boxElement.animate([{
+                transform: 'translate(' + txt + ')'
+            }, {
+                transform: 'translate(' + x + 'px, ' + y + 'px)'
+            }], 850);
+            animation.addEventListener('finish', function() {
+                boxElement.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+            });
+        }
+        $(function() {
+            var lastScrollTop = 0,
+                delta = 5;
+            anim1 = true;
+            anim2 = true;
+            anim3 = true;
+            anim4 = true;
+            anim5 = true;
+            anim6 = true;
+            anim7 = true;
+            anim8 = true;
+            anim9 = true;
+            anim10 = true;
+            anim11 = true;
+            anim12 = true;
+            anim13 = true;
+            anim14 = true;
+            anim15 = true;
+            base = 680;
+            $(window).scroll(function() {
+                console.log(nowScrollTop);
+                var nowScrollTop = $(this).scrollTop();
+                if (Math.abs(lastScrollTop - nowScrollTop) >= delta) {
+                    if (nowScrollTop > lastScrollTop) {
+
+                        if (lastScrollTop > 840 && anim1) {
+                            movePassaro(40, 1);
+                            anim1 = false;
+                            setTimeout(() => {
+                                movePassaro(95, 2);
+                                anim2 = false;
+                                setTimeout(() => {
+                                    movePassaro(110, 3);
+                                    setTimeout(() => {
+                                        anim3 = false;
+                                    }, "800")
+                                }, "1000")
+                            }, "1000")
+                        }
+                        if (lastScrollTop > 1200 && !anim1 && !anim2 && !anim3 && anim4) {
+                            movePassaro(495, 4);
+                            anim4 = false;
+                            setTimeout(() => {
+                                movePassaro(510, 5);
+                                setTimeout(() => {
+                                    anim5 = false;
+                                }, "800")
+                            }, "1000")
+                        }
+                        if (lastScrollTop > 1550 && !anim1 && !anim2 && !anim3 && !anim4 && !anim5 && anim6) {
+                            movePassaro(900, 6);
+                            anim6 = false;
+                            setTimeout(() => {
+                                movePassaro(1200, 7);
+                                anim7 = false;
+                                setTimeout(() => {
+                                    movePassaro(1000, 8);
+                                    anim8 = false;
+                                    setTimeout(() => {
+                                        movePassaro(1280, 9);
+                                        setTimeout(() => {
+                                            anim9 = false;
+                                        }, "800")
+                                    }, "1000")
+                                }, "1000")
+                            }, "1000")
+
+
+                        }
+                        if (lastScrollTop > 2250 && !anim1 && !anim2 && !anim3 && !anim4 && !anim5 && !anim6 && !anim7 && !anim8 && !anim9 && anim10) {
+                            movePassaro(1500, 10);
+                            anim10 = false;
+
+                            setTimeout(() => {
+                                movePassaro(1850, 11);
+                                anim11 = false;
+
+                                setTimeout(() => {
+                                    movePassaro(2050, 12);
+                                    setTimeout(() => {
+                                        anim12 = false;
+
+                                    }, "800")
+                                }, "1000")
+                            }, "1000")
+
+                        }
+                        if (lastScrollTop > 2950 && !anim1 && !anim2 && !anim3 && !anim4 && !anim5 && !anim6 && !anim7 && !anim8 && !anim9 && !anim10 && !anim11 && !anim12 && anim13) {
+                            movePassaro(2285, 13);
+                            anim13 = false;
+                            setTimeout(() => {
+                                movePassaro(2300, 14);
+                                setTimeout(() => {
+                                    anim14 = false;
+                                }, "800")
+                            }, "1000")
+
+                        }
+                        if (lastScrollTop > 3300 && !anim1 && !anim2 && !anim3 && !anim4 && !anim5 && !anim6 && !anim7 && !anim8 && !anim9 && !anim10 && !anim11 && !anim12 && !anim13 && !anim14 && anim15) {
+                            movePassaro(2500, 15);
+                            anim15 = false;
+
+                        }
+                    } else {
+                        if (lastScrollTop < 350) {
+                            anim1 = true;
+                            anim2 = true;
+                            anim3 = true;
+                            anim4 = true;
+                            anim5 = true;
+                            anim6 = true;
+                            anim7 = true;
+                            anim8 = true;
+                            anim9 = true;
+                            anim10 = true;
+                            anim11 = true;
+                            anim12 = true;
+                            anim13 = true;
+                            anim14 = true;
+                            anim15 = true;
+
+                        }
+                    }
+                    lastScrollTop = nowScrollTop;
+                }
+            });
+        });
+
+
+        $(document).ready(() => {
+            var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+            var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+            var ch = $('.container').height();
+            var fh = $('.footer').height();
+            //$('.qrcode').css('top', (ch - (fh / 2)) + 'px');
+            $('.download').css('top', (25 * xAlt * 23) + 'px');
+
+            //setTimeout(alignQrCode, 3000);
+
+            //$('#bird').css('top', xAlt * 1050);
+            $('#bird').css('width', $("#bird").width() * 10 / (xComp * 15));
+
+
+            $('.footer').width($('.container').width() + 50);
+            var fw = $('.container').width();
+            $('.footer').css('left', (((vw - fw) / 2) - 10) + 'px');
+
+        });
+        $(function() {
+            var INDEX = 0;
+            $("#chat-submit").click(function(e) {
+                e.preventDefault();
+                var msg = $("#chat-input").val();
+                //Enviar pro php
+                //Php responde
+                //Imprimir resposta
+
+                if (msg.trim() == '') {
+                    return false;
+                }
+                var response = 1;
+                bt = false;
+                if (response == 0) {
+                    var mensagem = "Algo deu errado, tente novamente mais tarde.";
+                } else if (response == 1) {
+                    var mensagem = "Olá!! escolha uma das opções para prosseguir";
+                    var bt = true;
+                    var buttons = [{
+                        name: 'Falar com um atendente',
+                        value: '1'
+                    }, {
+                        name: 'Perguntas Frequentes',
+                        value: '2'
+                    }];
+
+                }
+                generate_message(msg, 'self');
+                if (bt) {
+                    setTimeout(function() {
+                        generate_button_message(mensagem, buttons);
+                    }, 1000)
+                } else {
+                    generate_message(mensagem, 'user');
+                }
+
+
+            })
+
+            function generate_message(msg, type) {
+                INDEX++;
+                if (type == "self") {
+                    link = "../media/bird-left.webp";
+                } else {
+                    link = "../media/bird-right.webp";
+                }
+                var str = "";
+                str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg " + type + "\">";
+                str += "          <span class=\"msg-avatar\">";
+                str += "            <img src=\"" + link + "\">";
+                str += "          <\/span>";
+                str += "          <div class=\"cm-msg-text\">";
+                str += msg;
+                str += "          <\/div>";
+                str += "        <\/div>";
+                $(".chat-logs").append(str);
+                $("#cm-msg-" + INDEX).hide().fadeIn(300);
+                if (type == 'self') {
+                    $("#chat-input").val('');
+                }
+                $(".chat-logs").stop().animate({
+                    scrollTop: $(".chat-logs")[0].scrollHeight
+                }, 1000);
+            }
+
+            function generate_button_message(msg, buttons) {
+                /* Buttons should be object array 
+                  [
+                    {
+                      name: 'Existing User',
+                      value: 'existing'
+                    },
+                    {
+                      name: 'New User',
+                      value: 'new'
+                    }
+                  ]
+                */
+                INDEX++;
+
+                link = "../media/bird-right.webp";
+
+                var btn_obj = buttons.map(function(button) {
+                    return "<li class=\"button\"><a href=\"javascript:;\" class=\"btn btn-primary chat-btn\" chat-value=\"" + button.value + "\">" + button.name + "<\/a><\/li>";
+                }).join('');
+                var str = "";
+                str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg user\">";
+                str += "          <span class=\"msg-avatar\">";
+                str += "            <img src=\"" + link + "\">";
+                str += "          <\/span>";
+                str += "          <div class=\"cm-msg-text\">";
+                str += msg;
+                str += "          <\/div>";
+                str += "          <div class=\"cm-msg-button\">";
+                str += "            <ul>";
+                str += btn_obj;
+                str += "            <\/ul>";
+                str += "          <\/div>";
+                str += "        <\/div>";
+                $(".chat-logs").append(str);
+                $("#cm-msg-" + INDEX).hide().fadeIn(300);
+                $(".chat-logs").stop().animate({
+                    scrollTop: $(".chat-logs")[0].scrollHeight
+                }, 1000);
+                $("#chat-input").attr("disabled", true);
+            }
+
+            $(document).delegate(".chat-btn", "click", function() { //Fazer chamada Ajax Aqui
+                var value = $(this).attr("chat-value");
+                var name = $(this).html();
+                $("#chat-input").attr("disabled", false);
+                generate_message(name, 'self');
+            })
+
+            $("#chat-circle").click(function() {
+                $("#chat-circle").toggle('scale');
+                $(".chat-box").toggle('scale');
+            })
+
+            $(".chat-box-toggle").click(function() {
+                $("#chat-circle").toggle('scale');
+                $(".chat-box").toggle('scale');
+            })
+
+        })
+    </script>
+</body>

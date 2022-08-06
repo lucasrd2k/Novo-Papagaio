@@ -1,0 +1,407 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Adventure Bingo Landing Page">
+    <meta name="author" content="Lucas Rodrigues (Indutiva Tecnologia)">
+    <title>Adventure Bingo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            display: table;
+            height: 100%;
+            width: 100%;
+            background: url('../media/background.webp') no-repeat fixed;
+            padding: 50px o;
+            background-position: 30% 45%;
+            background-size: cover;
+        }
+        
+        .container {
+            max-width: 1100px;
+            height: auto;
+            width: 105%;
+            background: url('../media/map5.webp') no-repeat;
+            background-size: cover;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 100px;
+            margin-left: -3.5%;
+        }
+        
+        #map {
+            margin-left: 3%;
+            max-width: 90%;
+            min-height: 100%;
+            height: 100%;
+        }
+        
+        .header {
+            width: 80%;
+            padding-top: 20%;
+            padding-bottom: 5%;
+        }
+        
+        img {
+            object-fit: contain;
+            max-width: 100%;
+        }
+        
+        .footer {
+            width: 80%;
+            height: auto;
+            background: url('../media/footer.webp') no-repeat;
+            background-size: contain;
+            position: fixed;
+            /*top:500px;*/
+            bottom: -8px;
+            left: 14%;
+            z-index: 1000;
+        }
+        
+        .video {
+            width: 70%;
+            height: 70%;
+            margin-top: -5%;
+            margin-left: 6%;
+        }
+        
+        .download {
+            background: #820901;
+            border-color: #820901;
+            position: absolute;
+            top: 65%;
+        }
+        
+        .download:hover {
+            background: #950901;
+            border-color: #950901;
+        }
+        
+        #bird {
+            width: 10vw;
+            height: auto;
+            top: 510px;
+            margin-left: 40px;
+            position: absolute;
+        }
+        
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 60px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+        
+        .my-float {
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href=""><button type="button" style="position:absolute; top: 140%; left: 22%; width: 10%; border: transparent; color: transparent; background-color: transparent;">porra</button></a>
+        <a href=""><button type="button" style="position:absolute; top: 238.5%; left: 15%; width: 30%; border: transparent; color: transparent; background-color: transparent;">porra</button></a>
+
+
+        <img class="header" src="../media/header.webp" alt="Aventura Pirata">
+        <video controls class="video">
+            <source src="../media/tesouro.mp4" type="video/mp4">
+            Vídeo não suportado pelo dispositivo ou navegador.
+        </video>
+
+        <video controls class="" style="width:25%; position:absolute; top: 115%; left:68%">
+            <source src="../media/tesouro.mp4" type="video/mp4">
+            Vídeo não suportado no navegador.
+        </video>
+        <img style="width:25%;margin-top: -7px;" src="../media/arrow.gif" alt="Aventura Pirata">
+        <a href="https://qrco.de/cadeotesouro" class="btn btn-primary btn-sm download">&nbsp;&nbsp;Baixe Já!&nbsp;&nbsp;</a>
+        <img id="map" src="../media/map.png" alt="Aventura Pirata">
+        <img class="footer" src="../media/footer.webp" alt="Aventura Pirata">
+        <img id="bird" src="../media/bird-left.webp" alt="Bird">
+    </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <a href="https://api.whatsapp.com/send?phone=556284129577" class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
+    <script>
+        var urlAtual = window.location.href;
+        var urlClass = new URL(urlAtual);
+
+        if (!urlClass.searchParams.get("a")) {
+            setTimeout(function() {
+                window.location.href = window.location.href + "?a=0";
+            }, 1500);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        console.log("Comprimento X Altura: " + $(document).width() + "pxX" + $(document).height() + "px"); // altura do documento HTML
+        var altura = $(document).height();
+        var comprimento = $(document).width();
+        var xComp = comprimento / 360;
+        var xAlt = altura / 1870;
+        console.log("xComp=" + xComp + "---xAlt=" + xAlt);
+
+
+        const boxElement = document.querySelector('#bird');
+        posX = [0, -60, 5, -70, -50, 110, 95, 65, 30, -90, -20, 80, -80, -45, 80, -10, -20, 100, 30];
+
+        var vetY = [0];
+
+        var txt = 0;
+
+        function movePassaro(last, posicao) {
+            console.log("movimento " + posicao);
+            var x = posX[posicao - 1] * xComp;
+            var auxy = vetY[0];
+            var y = last - 400 + (220 / xAlt) + xAlt * 30 / posicao;
+            vetY[0] = y;
+            console.log("X:" + x + "---Y:" + y);
+            if (posicao > 1) {
+                var antX = posX[posicao - 2] * xComp;
+                var antY = auxy;
+                txt = antX + "px," + antY + "px";
+            }
+
+            var animation = boxElement.animate([{
+                transform: 'translate(' + txt + ')'
+            }, {
+                transform: 'translate(' + x + 'px, ' + y + 'px)'
+            }], 800);
+            animation.addEventListener('finish', function() {
+                boxElement.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+            });
+        }
+        $(function() {
+            var lastScrollTop = 0,
+                delta = 5;
+            anim1 = false;
+            anim2 = true;
+            anim3 = true;
+            anim4 = true;
+            anim5 = true;
+            anim6 = true;
+            anim7 = true;
+            anim8 = true;
+            anim9 = true;
+            anim10 = true;
+            anim11 = true;
+            anim12 = true;
+            anim13 = true;
+            anim14 = true;
+            anim15 = true;
+            anim16 = true;
+            anim17 = true;
+            anim18 = true;
+            anim19 = true;
+            anim20 = true;
+            anim21 = true;
+            anim22 = true;
+            anim23 = true;
+            anim24 = true;
+            anim25 = true;
+            $(window).scroll(function() {
+                console.log(lastScrollTop);
+                var nowScrollTop = $(this).scrollTop();
+                if (Math.abs(lastScrollTop - nowScrollTop) >= delta) {
+                    if (nowScrollTop > lastScrollTop) {
+                        if (lastScrollTop >= 120 && anim2) {
+                            console.log(lastScrollTop);
+                            var auxScroll = 160 * xAlt;
+                            //if (anim1) {
+                            //  movePassaro(auxScroll, 1);
+                            //}
+                            $('#bird').attr('src', '../media/bird-left.webp');
+                            movePassaro(auxScroll + 40 * xAlt, 2);
+                            anim2 = false;
+                            setTimeout(() => {
+                                movePassaro(auxScroll + 65 * xAlt, 3);
+                                $('#bird').attr('src', '../media/bird-right.webp');
+                                anim3 = false;
+                                setTimeout(() => {
+                                    movePassaro(auxScroll + 110 * xAlt, 4);
+                                    $('#bird').attr('src', '../media/bird-left.webp');
+                                    setTimeout(() => {
+                                        anim4 = false;
+                                    }, "1000")
+                                }, "1000")
+                            }, "900")
+                        }
+
+                        if (lastScrollTop >= 480 && !anim1 && !anim2 && !anim3 && !anim4 && anim5) {
+                            var auxScroll = 430 * xAlt;
+                            movePassaro(auxScroll - 10 * xAlt, 5);
+                            $('#bird').attr('src', '../media/bird-right.webp');
+                            anim5 = false;
+
+                            setTimeout(() => {
+                                movePassaro(auxScroll - 20 * xAlt, 6);
+                                anim6 = false;
+
+                                setTimeout(() => {
+                                    movePassaro(auxScroll + 250 * xAlt, 7);
+                                    $('#bird').attr('src', '../media/bird-left.webp');
+                                    setTimeout(() => {
+                                        anim7 = false;
+                                    }, "900")
+                                }, "850")
+                            }, "900")
+                        }
+                        if (lastScrollTop >= 640 && !anim1 && !anim2 && !anim3 && !anim4 && !anim5 && !anim6 && !anim7 && anim8) {
+                            var auxScroll = 650 * xAlt;
+                            movePassaro(auxScroll + 60, 8);
+                            anim8 = false;
+                            setTimeout(() => {
+
+                                movePassaro(auxScroll, 9);
+                                anim9 = false;
+                                setTimeout(() => {
+
+                                    movePassaro(auxScroll + 100 * xAlt, 10);
+                                    setTimeout(() => {
+                                        anim10 = false;
+                                    }, "1000")
+                                }, "1000")
+                            }, "900")
+                        }
+                        if (lastScrollTop >= 800 && !anim1 && !anim2 && !anim3 && !anim4 && !anim5 && !anim6 && !anim7 && !anim8 && !anim9 && !anim10 && anim11) {
+                            var auxScroll = 850 * xAlt;
+
+                            movePassaro(auxScroll, 11);
+                            $('#bird').attr('src', '../media/bird-right.webp');
+                            anim11 = false;
+                            setTimeout(() => {
+
+                                movePassaro(auxScroll + 90 * xAlt, 12);
+                                //$('#bird').attr('src', '../media/bird-right.webp');
+                                anim12 = false;
+                                setTimeout(() => {
+
+                                    movePassaro(auxScroll + 150 * xAlt, 13);
+                                    $('#bird').attr('src', '../media/bird-left.webp');
+                                    anim13 = false;
+                                    setTimeout(() => {
+
+                                        movePassaro(auxScroll + 300 * xAlt, 14);
+                                        anim14 = false;
+                                        $('#bird').attr('src', '../media/bird-right.webp');
+                                        auxScroll += 200;
+                                        setTimeout(() => {
+                                            movePassaro(auxScroll + 120 * xAlt, 15);
+                                            $('#bird').attr('src', '../media/bird-right.webp');
+                                            anim15 = false;
+                                            setTimeout(() => {
+
+                                                movePassaro(auxScroll + 220 * xAlt, 16);
+                                                $('#bird').attr('src', '../media/bird-left.webp');
+                                                auxScroll += 200;
+                                                setTimeout(() => {
+                                                    anim16 = false;
+                                                }, "700")
+                                            }, "850")
+                                        }, "900")
+                                    }, "850")
+                                }, "900")
+                            }, "800")
+                        }
+
+
+                        /*
+                                                if (lastScrollTop >= 3400 && !anim22 && anim23) {
+                                                    movePassaro(lastScrollTop,23);
+                                                    anim23 = false;
+                                                }
+
+                                                if (lastScrollTop >= 3600 && !anim23 && anim24) {
+                                                    movePassaro(lastScrollTop,24);
+                                                    anim24 = false;
+                                                }
+
+                                                if (lastScrollTop >= 3800 && !anim24 && anim25) {
+                                                    movePassaro(lastScrollTop,25);
+                                                    anim25 = false;
+                                                }
+                        */
+
+                    } else {
+                        if (lastScrollTop < 150) {
+                            anim1 = false;
+                            anim2 = true;
+                            anim3 = true;
+                            anim4 = true;
+                            anim5 = true;
+                            anim6 = true;
+                            anim7 = true;
+                            anim8 = true;
+                            anim9 = true;
+                            anim10 = true;
+                            anim11 = true;
+                            anim12 = true;
+                            anim13 = true;
+                            anim14 = true;
+                            anim15 = true;
+                            anim16 = true;
+                            anim17 = true;
+                            anim18 = true;
+                            anim19 = true;
+                            anim20 = true;
+                            anim21 = true;
+                            anim22 = true;
+                            anim23 = true;
+                            anim24 = true;
+                            anim25 = true;
+
+                        }
+                    }
+                    lastScrollTop = nowScrollTop;
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+        $(document).ready(() => {
+
+            var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+            var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+            var ch = $('.container').height();
+            var fh = $('.footer').height();
+            //$('.qrcode').css('top', (ch - (fh / 2)) + 'px');
+            //$('.download').css('top', (20 * xAlt * 10) + 'px');
+
+            //setTimeout(alignQrCode, 3000);
+
+            $('#bird').css('width', $("#bird").width() / xComp * 1.4);
+            $('#bird').css('top', $("#bird").top() * xAlt);
+
+            //$('.footer').width($('.container').width() * 1.5);
+            var fw = $('.container').width();
+            $('.footer').css('left', (((vw - fw) / 2) - 10) + 'px');
+
+        });
+    </script>
